@@ -79,7 +79,7 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <form action={handleSubmit} className="space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit(new FormData(e.currentTarget)) }} className="space-y-4">
           <div className="space-y-2">
             <Label>Je suis</Label>
             <div className="grid grid-cols-3 gap-2">
