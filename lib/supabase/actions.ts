@@ -90,7 +90,7 @@ export async function register(formData: FormData) {
     role:  parsed.data.role,
   }).catch(console.error)
 
-  return { success: 'Vérifiez votre email pour confirmer votre inscription' }
+  redirect('/login?registered=true')
 }
 
 export async function loginWithGoogle() {

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,7 +17,6 @@ const roles = [
 type Role = 'client' | 'freelance' | 'both'
 
 export default function RegisterPage() {
-  const router = useRouter()
   const [selectedRole, setSelectedRole] = useState<Role>('client')
   const [isPending, startTransition] = useTransition()
   const [isGooglePending, setIsGooglePending] = useState(false)
@@ -29,9 +27,6 @@ export default function RegisterPage() {
       const result = await register(formData)
       if (result?.error) {
         toast.error(result.error)
-      } else {
-        toast.success('Compte créé avec succès ! Connectez-vous.')
-        router.push('/login')
       }
     })
   }

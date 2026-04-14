@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -16,6 +16,13 @@ export default function LoginForm() {
   const [isGooglePending, setIsGooglePending] = useState(false)
 
   const error = searchParams.get('error')
+  const registered = searchParams.get('registered')
+
+  useEffect(() => {
+    if (registered === 'true') {
+      toast.success('Compte créé ! Connectez-vous.')
+    }
+  }, [registered])
 
   async function handleSubmit(formData: FormData) {
     startTransition(async () => {
