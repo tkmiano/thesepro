@@ -90,7 +90,7 @@ export async function register(formData: FormData) {
     role:  parsed.data.role,
   }).catch(console.error)
 
-  redirect('/login?registered=true')
+  return { success: true }
 }
 
 export async function loginWithGoogle() {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -17,6 +18,7 @@ const roles = [
 type Role = 'client' | 'freelance' | 'both'
 
 export default function RegisterPage() {
+  const router = useRouter()
   const [selectedRole, setSelectedRole] = useState<Role>('client')
   const [isPending, startTransition] = useTransition()
   const [isGooglePending, setIsGooglePending] = useState(false)
@@ -24,9 +26,16 @@ export default function RegisterPage() {
   async function handleSubmit(formData: FormData) {
     formData.set('role', selectedRole)
     startTransition(async () => {
-      const result = await register(formData)
-      if (result?.error) {
-        toast.error(result.error)
+      try {
+        const result = await register(formData)
+        if (result?.error) {
+          toast.error(result.error)
+        } else if (result?.success) {
+          toast.success('Compte créé ! Connectez-vous.')
+          setTimeout(() => router.push('/login'), 1500)
+        }
+      } catch {
+        toast.error('Une erreur est survenue. Veuillez réessayer.')
       }
     })
   }
