@@ -101,12 +101,16 @@ export default function CommentCaMarchePage() {
         <h2 className="text-2xl font-bold text-[#1B3A6B] mb-4">Prêt à commencer ?</h2>
         <p className="text-gray-600 mb-8">Trouvez votre expert académique en quelques minutes.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild className="bg-[#1B3A6B] hover:bg-[#2E6DB4]">
-            <Link href="/services">Voir les services</Link>
-          </Button>
-          <Button asChild variant="outline" className="border-[#1B3A6B] text-[#1B3A6B]">
-            <Link href="/register">Créer un compte</Link>
-          </Button>
+          <Link href="/services">
+            <Button className="bg-[#1B3A6B] hover:bg-[#2E6DB4] w-full sm:w-auto">
+              Voir les services
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button variant="outline" className="border-[#1B3A6B] text-[#1B3A6B] w-full sm:w-auto">
+              Créer un compte
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
